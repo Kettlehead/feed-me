@@ -1,0 +1,62 @@
+{
+	"textures": [
+		{
+			"image": "atlas.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 645,
+				"h": 173
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "menu-title",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 600,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 31,
+						"y": 11,
+						"w": 520,
+						"h": 171
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 520,
+						"h": 171
+					}
+				},
+				{
+					"filename": "alagard",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 125,
+						"h": 143
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 2,
+						"w": 121,
+						"h": 130
+					},
+					"frame": {
+						"x": 523,
+						"y": 1,
+						"w": 121,
+						"h": 130
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:78d31824259e239adcc1c1962aa627c8:7ab24728477ba1868b9578f3cdc4a6d8:cbce6b53f0f49e0bf15173c25c41f876$"
+	}
+}

@@ -1,0 +1,17 @@
+{
+  "preload": {
+    "files": [
+      {
+        "type": "atlas",
+        "key": "atlas",
+        "textureURL": "assets/atlas.png",
+        "atlasURL": "assets/atlas.json"
+      },
+      {
+        "type": "xml",
+        "key": "alagard",
+        "url": "assets/alagard.fnt"
+      }
+    ]
+  }
+}

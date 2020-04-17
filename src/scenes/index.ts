@@ -1,0 +1,9 @@
+enum SCENE {
+  PRELOAD = "PRELOAD",
+  MENU = "MENU",
+  SETTINGS = "SETTINGS",
+  GAME = "GAME",
+  GAME_OVER = "GAME_OVER",
+}
+
+export { SCENE };
