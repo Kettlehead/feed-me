@@ -5,7 +5,7 @@
 			"format": "RGBA8888",
 			"size": {
 				"w": 641,
-				"h": 197
+				"h": 208
 			},
 			"scale": 1,
 			"frames": [
@@ -73,48 +73,6 @@
 					}
 				},
 				{
-					"filename": "empty-tank",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 8,
-						"h": 8
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 8,
-						"h": 8
-					},
-					"frame": {
-						"x": 519,
-						"y": 183,
-						"w": 8,
-						"h": 8
-					}
-				},
-				{
-					"filename": "full-tank",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 8,
-						"h": 8
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 8,
-						"h": 8
-					},
-					"frame": {
-						"x": 529,
-						"y": 183,
-						"w": 8,
-						"h": 8
-					}
-				},
-				{
 					"filename": "full-bucket",
 					"rotated": false,
 					"trimmed": false,
@@ -129,10 +87,73 @@
 						"h": 24
 					},
 					"frame": {
-						"x": 569,
-						"y": 133,
+						"x": 519,
+						"y": 183,
 						"w": 24,
 						"h": 24
+					}
+				},
+				{
+					"filename": "empty-tank",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 24,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 20,
+						"h": 24
+					},
+					"frame": {
+						"x": 545,
+						"y": 183,
+						"w": 20,
+						"h": 24
+					}
+				},
+				{
+					"filename": "full-tank",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 24,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 20,
+						"h": 24
+					},
+					"frame": {
+						"x": 567,
+						"y": 183,
+						"w": 20,
+						"h": 24
+					}
+				},
+				{
+					"filename": "mutant-plant",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 48,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 44,
+						"h": 48
+					},
+					"frame": {
+						"x": 569,
+						"y": 133,
+						"w": 44,
+						"h": 48
 					}
 				},
 				{
@@ -150,8 +171,8 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 569,
-						"y": 159,
+						"x": 615,
+						"y": 133,
 						"w": 24,
 						"h": 22
 					}
@@ -171,31 +192,10 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 595,
-						"y": 133,
+						"x": 615,
+						"y": 157,
 						"w": 24,
 						"h": 22
-					}
-				},
-				{
-					"filename": "mutant-plant",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 16,
-						"h": 16
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 16,
-						"h": 16
-					},
-					"frame": {
-						"x": 621,
-						"y": 133,
-						"w": 16,
-						"h": 16
 					}
 				}
 			]
@@ -204,6 +204,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:063c96ea04a6c905d914718a9f0959da:6fadd1183baafaee684e53a929bbc08d:cbce6b53f0f49e0bf15173c25c41f876$"
+		"smartupdate": "$TexturePacker:SmartUpdate:63a353bc89c8e9d372e9d97806c2051a:6cab6780fbc249df21d4acde9f6a8906:cbce6b53f0f49e0bf15173c25c41f876$"
 	}
 }

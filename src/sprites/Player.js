@@ -25,7 +25,12 @@ export default class Player {
                 console.log("Pickup bucket");
               },
             },
-            TANK: "carrying_tank",
+            TANK: {
+              target: "carrying_tank",
+              actions: () => {
+                console.log("Pickup tank");
+              },
+            },
             BONES: {
               target: "carrying_bones",
               actions: () => {
@@ -48,7 +53,13 @@ export default class Player {
         },
         carrying_tank: {
           on: {
-            DROP: { target: "not_carrying" },
+            DROP: {
+              target: "not_carrying",
+              actions: () => {
+                console.log("Drop tank thanks.");
+                this.scene.events.emit("drop");
+              },
+            },
           },
         },
         carrying_bones: {
