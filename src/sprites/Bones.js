@@ -9,16 +9,21 @@ export default class Bones {
 
   pickup() {
     this.beingCarried = true;
+    this.sprite.setPosition(
+      this.scene.player.sprite.x + 10,
+      this.scene.player.sprite.y + 5
+    );
     this.scene.events.once("drop", () => {
       this.beingCarried = false;
+      this.sprite.body.setVelocity(0);
     });
   }
 
   update() {
     if (this.beingCarried) {
-      this.sprite.setPosition(
-        this.scene.player.sprite.x + 10,
-        this.scene.player.sprite.y + 5
+      this.sprite.body.setVelocity(
+        this.scene.player.sprite.body.velocity.x,
+        this.scene.player.sprite.body.velocity.y
       );
     }
   }

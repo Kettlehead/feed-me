@@ -19,6 +19,9 @@ const config = {
   pixelArt: true,
   physics: {
     default: "arcade",
+    arcade: {
+      debug: false,
+    },
   },
   scene: [Preload, Menu, Settings, Intro, HUD, Game, GameOver],
 };

@@ -32,8 +32,27 @@ export default class HUD extends Phaser.Scene {
       .bitmapText(200, 14, "alagard", `SURVIVOR HEALTH: ${playerHealth}%`)
       .setScrollFactor(0);
 
-    this.add
-      .bitmapText(580, 14, "alagard", `VIZBIG DEMANDS: ${"WATER"}!`)
+    this.currentDemand = "NOTHING";
+    this.demandText = this.add
+      .bitmapText(580, 14, "alagard", `VIZBIG DEMANDS: ${this.currentDemand}!`)
       .setScrollFactor(0);
+
+    const gameScene = this.scene.get(SCENE.GAME);
+    gameScene.events.on("vizbig_demand", this.updateDemand, this);
+    gameScene.events.on("vizbig_health_update", this.updateVizbigHealth, this);
+    gameScene.events.on("player_health_update", this.updatePlayerHealth, this);
+  }
+
+  updateDemand(demand) {
+    this.currentDemand = demand;
+    this.demandText.text = `VIZBIG DEMANDS: ${this.currentDemand}!`;
+  }
+
+  updateVizbigHealth(health) {
+    //this.demandText.text = `VIZBIG HEALTH: ${health}%`;
+  }
+
+  updatePlayerHealth(health) {
+    //this.demandText.text = `SURVIVOR HEALTH: ${health}%`;
   }
 }
