@@ -7,6 +7,9 @@ export default class Player {
     this.scene.events.on("pickup", (item) => {
       this.carryService.send(item);
     });
+    this.scene.events.on("drop", (item) => {
+      this.carryService.send("DROP");
+    });
     this.sprite.body.setCollideWorldBounds();
     this.shouldDropOrPickup = false;
     this.cursors = scene.input.keyboard.createCursorKeys();
@@ -107,12 +110,13 @@ export default class Player {
     }
 
     if (this.shouldDropOrPickup) {
-      console.log(`current state: ${this.carryService.state.value}`);
+      console.log(`Player.state: ${this.carryService.state.value}`);
       this.shouldDropOrPickup = false;
       if (this.carryService.state.value === "not_carrying") {
         this.scene.events.emit("attempt_pickup", this);
       } else {
-        this.carryService.send("DROP");
+        this.scene.events.emit("carry_action", this.carryService.state.value);
+        //this.carryService.send("DROP");
       }
     }
 

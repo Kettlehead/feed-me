@@ -24,6 +24,7 @@ export default class Intro extends Phaser.Scene {
       )
     );
     this.input.keyboard.on("keydown", () => {
+      this.scene.launch(SCENE.HUD);
       this.scene.start(SCENE.GAME);
     });
   }

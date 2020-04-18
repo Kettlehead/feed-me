@@ -31,7 +31,13 @@ export default class Game extends Phaser.Scene {
       (obj) => obj.name === "Bucket"
     );
     this.bucket = new Bucket(this, bucketPoint.x, bucketPoint.y, this.player);
-    this.bones = new Bones(this, 100, 200);
+
+    this.bonesGroup = this.physics.add.group();
+    this.layer.forEachTile((tile) => {
+      if (tile.index === 15) {
+        new Bones(this, tile.getCenterX(), tile.getCenterY());
+      }
+    });
     const tankPoint = this.map.findObject(
       "Objects",
       (obj) => obj.name === "Tank"
@@ -54,20 +60,51 @@ export default class Game extends Phaser.Scene {
       console.log("Game: Checking pickup collisions...");
       if (this.physics.collide(this.player.sprite, this.bucket.sprite)) {
         this.events.emit("pickup", "BUCKET");
-      } else if (this.physics.collide(this.player.sprite, this.bones.sprite)) {
-        this.bones.pickup();
-        this.events.emit("pickup", "BONES");
+      } else if (this.physics.collide(this.player.sprite, this.bonesGroup)) {
+        this.physics.collide(
+          this.player.sprite,
+          this.bonesGroup,
+          (player, bones) => {
+            bones.data.pickup();
+            this.events.emit("pickup", "BONES");
+          }
+        );
       } else if (this.physics.collide(this.player.sprite, this.tank.sprite)) {
         this.tank.pickup();
         this.events.emit("pickup", "TANK");
       }
     });
+
+    this.events.on("carry_action", (state) => {
+      switch (state) {
+        case "carrying_bucket":
+          this.checkBucketAction();
+          break;
+        default:
+          this.events.emit("drop");
+          break;
+      }
+    });
+  }
+
+  checkBucketAction() {
+    const currentTile = this.layer.getTileAtWorldXY(
+      this.player.sprite.x,
+      this.player.sprite.y
+    );
+    if (currentTile.properties.wet) {
+      this.events.emit("fill_bucket");
+    } else {
+      this.events.emit("drop");
+    }
   }
 
   update(time, delta) {
     this.player.update();
     this.bucket.update();
-    this.bones.update();
+    this.bonesGroup.getChildren().forEach((bones) => {
+      bones.data.update();
+    });
     this.tank.update();
 
     if (this.vizbig.dead || this.player.dead) {

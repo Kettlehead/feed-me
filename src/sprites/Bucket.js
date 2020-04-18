@@ -6,6 +6,9 @@ export default class Bucket {
     this.player = player;
     this.beingCarried = false;
     this.sprite = scene.physics.add.sprite(x, y, "atlas", "empty-bucket");
+    this.scene.events.on("fill_bucket", () => {
+      this.service.send("FILL");
+    });
     this.scene.events.on("pickup", (item) => {
       if (item === "BUCKET") {
         this.beingCarried = true;

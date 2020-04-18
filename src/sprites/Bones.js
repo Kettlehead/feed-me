@@ -3,8 +3,9 @@ export default class Bones {
     this.scene = scene;
     this.beingCarried = false;
     this.sprite = scene.physics.add.sprite(x, y, "atlas", "bones");
-
+    this.scene.bonesGroup.add(this.sprite);
     this.sprite.body.setCollideWorldBounds();
+    this.sprite.data = this;
   }
 
   pickup() {
