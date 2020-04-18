@@ -62,6 +62,7 @@ export default class Preload extends Phaser.Scene {
         "alagard",
         "alagard"
       );
+      this.scene.launch(SCENE.HUD);
       this.scene.start(SCENE.GAME);
     } else {
       this.loadingMessage =
