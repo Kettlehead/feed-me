@@ -1,27 +1,21 @@
 import Phaser from "phaser";
 import { SCENE } from "./index";
 
-export default class Menu extends Phaser.Scene {
+export default class Intro extends Phaser.Scene {
   constructor() {
-    super({ key: SCENE.MENU });
+    super({ key: SCENE.INTRO });
   }
 
   create() {
     this.cameras.main.setBackgroundColor(0x263d0a);
-    this.add.image(
-      this.cameras.main.centerX,
-      this.cameras.main.centerY - 100,
-      "atlas",
-      "title"
-    );
-    const startText = this.add.bitmapText(
+    const introText = this.add.bitmapText(
       0,
       0,
       "alagard",
-      "Press any key to start"
+      "Another day dawns in the wasteland..."
     );
     Phaser.Display.Align.In.Center(
-      startText,
+      introText,
       this.add.zone(
         this.cameras.main.centerX,
         this.cameras.main.centerY,
@@ -29,9 +23,8 @@ export default class Menu extends Phaser.Scene {
         this.cameras.main.height
       )
     );
-    startText.y += 50;
     this.input.keyboard.on("keydown", () => {
-      this.scene.start(SCENE.INTRO);
+      this.scene.start(SCENE.GAME);
     });
   }
 }

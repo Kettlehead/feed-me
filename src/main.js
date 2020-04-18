@@ -2,8 +2,10 @@ import Phaser from "phaser";
 
 import Preload from "./scenes/Preload";
 import Menu from "./scenes/Menu";
+import Intro from "./scenes/Intro";
 import Settings from "./scenes/Settings";
 import Game from "./scenes/Game";
+import HUD from "./scenes/HUD";
 import GameOver from "./scenes/GameOver";
 
 const config = {
@@ -18,7 +20,7 @@ const config = {
   physics: {
     default: "arcade",
   },
-  scene: [Preload, Menu, Settings, Game, GameOver],
+  scene: [Preload, Menu, Settings, Intro, HUD, Game, GameOver],
 };
 
 export default new Phaser.Game(config);

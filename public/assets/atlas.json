@@ -4,8 +4,8 @@
 			"image": "atlas.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 645,
-				"h": 173
+				"w": 803,
+				"h": 197
 			},
 			"scale": 1,
 			"frames": [
@@ -18,16 +18,37 @@
 						"h": 200
 					},
 					"spriteSourceSize": {
-						"x": 31,
-						"y": 11,
-						"w": 520,
-						"h": 171
+						"x": 35,
+						"y": 0,
+						"w": 516,
+						"h": 195
 					},
 					"frame": {
 						"x": 1,
 						"y": 1,
-						"w": 520,
-						"h": 171
+						"w": 516,
+						"h": 195
+					}
+				},
+				{
+					"filename": "tileset",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 160,
+						"h": 160
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 160,
+						"h": 160
+					},
+					"frame": {
+						"x": 519,
+						"y": 1,
+						"w": 160,
+						"h": 160
 					}
 				},
 				{
@@ -45,10 +66,157 @@
 						"h": 130
 					},
 					"frame": {
-						"x": 523,
+						"x": 681,
 						"y": 1,
 						"w": 121,
 						"h": 130
+					}
+				},
+				{
+					"filename": "mutant-plant",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 519,
+						"y": 163,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "bones",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 8,
+						"h": 8
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 8,
+						"h": 8
+					},
+					"frame": {
+						"x": 519,
+						"y": 181,
+						"w": 8,
+						"h": 8
+					}
+				},
+				{
+					"filename": "empty-bucket",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 8,
+						"h": 8
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 8,
+						"h": 8
+					},
+					"frame": {
+						"x": 529,
+						"y": 181,
+						"w": 8,
+						"h": 8
+					}
+				},
+				{
+					"filename": "player",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 537,
+						"y": 163,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "empty-tank",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 8,
+						"h": 8
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 8,
+						"h": 8
+					},
+					"frame": {
+						"x": 539,
+						"y": 181,
+						"w": 8,
+						"h": 8
+					}
+				},
+				{
+					"filename": "full-bucket",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 8,
+						"h": 8
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 8,
+						"h": 8
+					},
+					"frame": {
+						"x": 549,
+						"y": 181,
+						"w": 8,
+						"h": 8
+					}
+				},
+				{
+					"filename": "full-tank",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 8,
+						"h": 8
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 8,
+						"h": 8
+					},
+					"frame": {
+						"x": 555,
+						"y": 163,
+						"w": 8,
+						"h": 8
 					}
 				}
 			]
@@ -57,6 +225,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:78d31824259e239adcc1c1962aa627c8:7ab24728477ba1868b9578f3cdc4a6d8:cbce6b53f0f49e0bf15173c25c41f876$"
+		"smartupdate": "$TexturePacker:SmartUpdate:cf3da0796c5a04bd760df357689a8519:0f7261e928630c0cac0a7c5a78763cea:cbce6b53f0f49e0bf15173c25c41f876$"
 	}
 }

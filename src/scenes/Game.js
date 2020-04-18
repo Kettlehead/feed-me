@@ -6,5 +6,7 @@ export default class Game extends Phaser.Scene {
     super({ key: SCENE.GAME });
   }
 
-  create() {}
+  create() {
+    this.cameras.main.setBackgroundColor(0x263d0a);
+  }
 }
