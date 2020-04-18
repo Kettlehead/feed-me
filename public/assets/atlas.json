@@ -73,7 +73,7 @@
 					}
 				},
 				{
-					"filename": "bones",
+					"filename": "empty-tank",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -94,7 +94,7 @@
 					}
 				},
 				{
-					"filename": "empty-bucket",
+					"filename": "full-tank",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -115,66 +115,66 @@
 					}
 				},
 				{
-					"filename": "empty-tank",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 8,
-						"h": 8
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 8,
-						"h": 8
-					},
-					"frame": {
-						"x": 539,
-						"y": 183,
-						"w": 8,
-						"h": 8
-					}
-				},
-				{
 					"filename": "full-bucket",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 8,
-						"h": 8
+						"w": 24,
+						"h": 24
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 8,
-						"h": 8
+						"w": 24,
+						"h": 24
 					},
 					"frame": {
-						"x": 549,
-						"y": 183,
-						"w": 8,
-						"h": 8
+						"x": 569,
+						"y": 133,
+						"w": 24,
+						"h": 24
 					}
 				},
 				{
-					"filename": "full-tank",
+					"filename": "bones",
 					"rotated": false,
-					"trimmed": false,
+					"trimmed": true,
 					"sourceSize": {
-						"w": 8,
-						"h": 8
+						"w": 24,
+						"h": 24
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 0,
-						"w": 8,
-						"h": 8
+						"y": 2,
+						"w": 24,
+						"h": 22
 					},
 					"frame": {
-						"x": 559,
-						"y": 183,
-						"w": 8,
-						"h": 8
+						"x": 569,
+						"y": 159,
+						"w": 24,
+						"h": 22
+					}
+				},
+				{
+					"filename": "empty-bucket",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 24,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 2,
+						"w": 24,
+						"h": 22
+					},
+					"frame": {
+						"x": 595,
+						"y": 133,
+						"w": 24,
+						"h": 22
 					}
 				},
 				{
@@ -192,7 +192,7 @@
 						"h": 16
 					},
 					"frame": {
-						"x": 569,
+						"x": 621,
 						"y": 133,
 						"w": 16,
 						"h": 16
@@ -204,6 +204,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:9b4aa12923818fe266f2bca39d9bfd9c:7a1cc0b32885011db694f7991296e3df:cbce6b53f0f49e0bf15173c25c41f876$"
+		"smartupdate": "$TexturePacker:SmartUpdate:063c96ea04a6c905d914718a9f0959da:6fadd1183baafaee684e53a929bbc08d:cbce6b53f0f49e0bf15173c25c41f876$"
 	}
 }

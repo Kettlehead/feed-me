@@ -62,7 +62,7 @@ export default class Preload extends Phaser.Scene {
         "alagard",
         "alagard"
       );
-      this.scene.start(SCENE.MENU);
+      this.scene.start(SCENE.GAME);
     } else {
       this.loadingMessage =
         "Some files failed to load. Please reload the page.";

@@ -1,5 +1,8 @@
 import Phaser from "phaser";
 import { SCENE } from "./index";
+import Player from "../sprites/Player";
+import Bucket from "../sprites/Bucket";
+import Bones from "../sprites/Bones";
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -14,36 +17,33 @@ export default class Game extends Phaser.Scene {
     this.tileset = this.map.addTilesetImage("Tiles");
     this.layer = this.map.createStaticLayer("Ground", this.tileset, 0, 0);
 
-    this.player = this.physics.add.sprite(0, 0, "atlas", "player");
-    this.cursors = this.input.keyboard.createCursorKeys();
+    this.player = new Player(this, 0, 0);
+    this.bucket = new Bucket(this, 100, 100, this.player);
+    this.bones = new Bones(this, 100, 200);
 
     const camera = this.cameras.main;
-    camera.startFollow(this.player);
+    camera.startFollow(this.player.sprite);
     camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+
+    this.events.on("attempt_pickup", () => {
+      console.log("Game: attempting to pickup...");
+      if (this.physics.collide(this.player.sprite, this.bucket.sprite)) {
+        this.events.emit("pickup", "BUCKET");
+      } else if (this.physics.collide(this.player.sprite, this.bones.sprite)) {
+        this.bones.pickup();
+        this.events.emit("pickup", "BONES");
+      } else {
+        /**this.events.emit(
+          "pickup",
+          Phaser.Utils.Array.GetRandom(["BONES", "TANK", "FRUIT"])
+        );**/
+      }
+    });
   }
 
   update(time, delta) {
-    const speed = 240;
-    //const prevVelocity = player.body.velocity.clone();
-
-    // Stop any previous movement from the last frame
-    this.player.body.setVelocity(0);
-
-    // Horizontal movement
-    if (this.cursors.left.isDown) {
-      this.player.body.setVelocityX(-speed);
-    } else if (this.cursors.right.isDown) {
-      this.player.body.setVelocityX(speed);
-    }
-
-    // Vertical movement
-    if (this.cursors.up.isDown) {
-      this.player.body.setVelocityY(-speed);
-    } else if (this.cursors.down.isDown) {
-      this.player.body.setVelocityY(speed);
-    }
-
-    // Normalize and scale the velocity so that player can't move faster along a diagonal
-    this.player.body.velocity.normalize().scale(speed);
+    this.player.update();
+    this.bucket.update();
+    this.bones.update();
   }
 }
