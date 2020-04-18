@@ -11,6 +11,16 @@
         "type": "xml",
         "key": "alagard",
         "url": "assets/alagard.fnt"
+      },
+      {
+        "type": "tilemapTiledJSON",
+        "key": "world",
+        "url": "assets/world.json"
+      },
+      {
+        "type": "image",
+        "key": "Tiles",
+        "url": "assets/tileset-extruded.png"
       }
     ]
   }

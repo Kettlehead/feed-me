@@ -21,6 +21,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "@xstate/fsm": "^1.4.0",
     "phaser": "^3.22.0"
   },
   "parcelCleanPaths": [
