@@ -25,7 +25,7 @@ export default class GameOver extends Phaser.Scene {
       finalText.x,
       0,
       "alagard",
-      "Press any key to restart"
+      "Press R to restart"
     );
     restartMessage.y = finalText.y + finalText.height + 20;
     restartMessage.alpha = 0;
@@ -41,7 +41,7 @@ export default class GameOver extends Phaser.Scene {
   }
 
   setupRestart() {
-    this.input.keyboard.on("keydown", () => {
+    this.input.keyboard.once("keydown-R", () => {
       const cam = this.cameras.main;
       cam.fade(500, 0, 0, 0);
       cam.once("camerafadeoutcomplete", () => {
