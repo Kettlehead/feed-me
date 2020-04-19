@@ -140,7 +140,7 @@ export default class Game extends Phaser.Scene {
       ) < 120
     ) {
       this.events.emit("empty_bucket");
-      this.events.emit("drop");
+      //this.events.emit("drop");
       this.vizbig.feedWater();
     } else if (currentTile.properties.wet) {
       this.events.emit("fill_bucket");
@@ -164,7 +164,7 @@ export default class Game extends Phaser.Scene {
       ) < 200
     ) {
       this.events.emit("empty_tank");
-      this.events.emit("drop");
+      //this.events.emit("drop");
       this.vizbig.feedSludge();
     } else if (currentTile.properties.toxic) {
       this.events.emit("fill_tank");

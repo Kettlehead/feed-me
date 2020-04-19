@@ -33,7 +33,7 @@ export default class GameOver extends Phaser.Scene {
     this.tweens.add({
       targets: restartMessage,
       alpha: 1,
-      duration: 800,
+      duration: 500,
       onComplete: () => {
         this.setupRestart();
       },

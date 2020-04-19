@@ -46,7 +46,7 @@ export default class Intro extends Phaser.Scene {
     this.tweens.add({
       targets: startMessage,
       alpha: 1,
-      duration: 500,
+      duration: 300,
       onComplete: () => {
         this.setupKeys();
       },
