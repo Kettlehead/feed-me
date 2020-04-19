@@ -27,7 +27,7 @@ export default class Game extends Phaser.Scene {
     });
     const HUD = this.scene.get(SCENE.HUD);
     HUD.setGameTimer(this.gameTimer);
-    //this.music.play();
+    this.music.play();
     this.map = this.make.tilemap({ key: "world" });
     const vizbigSpawn = this.map.findObject(
       "Objects",
