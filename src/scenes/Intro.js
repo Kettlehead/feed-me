@@ -9,11 +9,6 @@ export default class Intro extends Phaser.Scene {
   create() {
     this.cameras.main.setBackgroundColor(0x263d0a);
 
-    this.input.keyboard.on("keydown", () => {
-      this.scene.launch(SCENE.HUD);
-      this.scene.start(SCENE.GAME);
-    });
-
     const introText = this.add.bitmapText(
       0,
       90,
@@ -37,12 +32,37 @@ export default class Intro extends Phaser.Scene {
     this.addText(330, "Bones and fruit can be picked up by hand");
 
     this.addText(370, "Arrow keys control your movement");
-    this.addText(390, "Space to pick up / drop / deliver / empty");
+    const endText = this.addText(
+      390,
+      "Space to pick up / drop / deliver / empty"
+    );
+
+    const startMessage = this.addText(
+      endText.y + endText.height + 20,
+      "Press any key to start"
+    );
+    startMessage.alpha = 0;
+
+    this.tweens.add({
+      targets: startMessage,
+      alpha: 1,
+      duration: 500,
+      onComplete: () => {
+        this.setupKeys();
+      },
+    });
   }
 
   addText(y, text) {
     const bitmapText = this.add.bitmapText(0, y, "alagard", text);
     bitmapText.x = this.cameras.main.centerX - bitmapText.width / 2;
     return bitmapText;
+  }
+
+  setupKeys() {
+    this.input.keyboard.on("keydown", () => {
+      this.scene.launch(SCENE.HUD);
+      this.scene.start(SCENE.GAME);
+    });
   }
 }

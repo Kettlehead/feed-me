@@ -1,4 +1,3 @@
-import { createMachine, interpret } from "@xstate/fsm";
 import { DEMAND } from "./DemandType";
 
 class Demand {
@@ -96,11 +95,7 @@ export default class Vizbig {
 
   checkDemand(fed) {
     if (this.currentDemand.type === fed) {
-      console.log("Demand Met.");
-      if (Math.random() > 0) {
-        //0.5
-        this.scene.events.emit("spawn_fruit");
-      }
+      this.scene.events.emit("spawn_fruit");
       this.heal(5);
       this.currentDemand.countdown.remove();
       this.getNextDemand();

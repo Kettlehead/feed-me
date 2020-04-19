@@ -232,7 +232,10 @@ export default class Game extends Phaser.Scene {
       const HUD = this.scene.get(SCENE.HUD);
       HUD.scene.stop();
       this.cleanUp();
-      this.scene.start(SCENE.GAME_OVER, { vizbigDead: this.vizbig.dead });
+      this.scene.start(SCENE.GAME_OVER, {
+        vizbigDead: this.vizbig.dead,
+        score: this.score,
+      });
     }
   }
 
