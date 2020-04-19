@@ -24,7 +24,7 @@ export default class Game extends Phaser.Scene {
     this.tileset = this.map.addTilesetImage("Tiles");
     this.layer = this.map.createStaticLayer("Ground", this.tileset, 0, 0);
     this.rootsLayer = this.map.createStaticLayer("Roots", this.tileset, 0, 0);
-    this.layer.setCollisionByProperty({ collides: true });
+    //this.layer.setCollisionByProperty({ collides: true });
     this.score = 0;
 
     const spawnPoint = this.map.findObject(
