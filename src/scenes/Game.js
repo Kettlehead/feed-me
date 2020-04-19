@@ -17,7 +17,15 @@ export default class Game extends Phaser.Scene {
     this.music = this.sound.add("backgroundMusic");
     this.music.setVolume(0.5);
     this.music.setLoop(true);
-    //this.music.play();
+    this.gameOver = false;
+    const gameLimit = 4 * 60 * 1000;
+    this.gameTimer = this.time.addEvent({
+      delay: gameLimit,
+      callback: () => {
+        this.gameOver = true;
+      },
+    });
+    this.music.play();
     this.map = this.make.tilemap({ key: "world" });
     const vizbigSpawn = this.map.findObject(
       "Objects",
@@ -59,7 +67,7 @@ export default class Game extends Phaser.Scene {
     );
     this.tank = new Tank(this, tankPoint.x, tankPoint.y);
 
-    this.physics.add.collider(this.player.sprite, this.layer);
+    //this.physics.add.collider(this.player.sprite, this.layer);
 
     const camera = this.cameras.main;
     camera.startFollow(this.player.sprite);
@@ -120,11 +128,11 @@ export default class Game extends Phaser.Scene {
     this.events.on("spawn_fruit", this.spawnFruit, this);
   }
 
-  spawnFruit() {
-    //for (let i = 0; i < 3; i++) {
-    const fruit = new Fruit(this, this.vizbig.sprite.x, this.vizbig.sprite.y);
-    this.add.existing(fruit);
-    //}
+  spawnFruit(amount) {
+    for (let i = 0; i < amount; i++) {
+      const fruit = new Fruit(this, this.vizbig.sprite.x, this.vizbig.sprite.y);
+      this.add.existing(fruit);
+    }
   }
 
   checkBucketAction() {
@@ -234,12 +242,13 @@ export default class Game extends Phaser.Scene {
     });
     this.tank.update();
 
-    if (this.vizbig.dead || this.player.dead) {
+    if (this.vizbig.dead || this.player.dead || this.gameOver) {
       const HUD = this.scene.get(SCENE.HUD);
       HUD.scene.stop();
       this.cleanUp();
       this.scene.start(SCENE.GAME_OVER, {
         vizbigDead: this.vizbig.dead,
+        playerWon: this.gameOver,
         score: this.score,
       });
     }
@@ -254,5 +263,6 @@ export default class Game extends Phaser.Scene {
     this.bucket.destroy();
     this.tank.destroy();
     this.player.destroy();
+    //clear this.gameTimer
   }
 }

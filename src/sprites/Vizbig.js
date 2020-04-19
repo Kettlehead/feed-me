@@ -10,17 +10,28 @@ class Demand {
 export default class Vizbig {
   constructor(scene, x, y) {
     this.scene = scene;
-    this.seconds = 1000;
-    this.sprite = scene.physics.add.sprite(x, y, "atlas", "mutant-plant");
+    this.seconds = 1500;
+    this.defaultScale = 1.5;
+    this.demandTime = 11;
+    this.fruitAmount = 1;
+    this.sprite = scene.physics.add
+      .sprite(x + 10, y + 20, "atlas", "mutant-plant")
+      .setOrigin(0.5, 1)
+      .setScale(this.defaultScale, this.defaultScale)
+      .setDepth(100);
+
+    this.startAnimation();
+    const startTime = 20;
     this.demandQueue = [
-      new Demand(DEMAND.WATER, 20 * this.seconds),
-      new Demand(DEMAND.BONES, 15 * this.seconds),
-      new Demand(DEMAND.SLUDGE, 15 * this.seconds),
-      new Demand(DEMAND.WATER, 13 * this.seconds),
+      new Demand(DEMAND.WATER, startTime * this.seconds),
+      new Demand(DEMAND.BONES, (startTime - 5) * this.seconds),
+      new Demand(DEMAND.SLUDGE, (startTime - 5) * this.seconds),
+      new Demand(DEMAND.WATER, (startTime - 7) * this.seconds),
     ];
     this.health = 100;
     this.dead = false;
     this.size = "small";
+    this.food = 0;
     this.getNextDemand();
     /**this.scene.time.addEvent({
       delay: 1000,
@@ -30,6 +41,21 @@ export default class Vizbig {
         this.scene.events.emit("spawn_fruit");
       },
     });*/
+  }
+
+  startAnimation() {
+    this.tween = this.scene.tweens.add({
+      targets: this.sprite,
+      scaleX: this.defaultScale * 0.75,
+      scaleY: this.defaultScale * 1.5,
+      duration: 1500,
+      yoyo: true,
+      repeat: 999999,
+    });
+  }
+
+  clearAnimations() {
+    this.scene.tweens.remove(this.tween);
   }
 
   getNextDemand() {
@@ -73,7 +99,7 @@ export default class Vizbig {
           DEMAND.BONES,
           DEMAND.SLUDGE,
         ]),
-        11 * this.seconds
+        this.demandTime * this.seconds
       )
     );
   }
@@ -95,16 +121,37 @@ export default class Vizbig {
 
   checkDemand(fed) {
     if (this.currentDemand.type === fed) {
-      this.scene.events.emit("spawn_fruit");
+      this.scene.events.emit("spawn_fruit", Math.floor(this.fruitAmount));
       this.heal(5);
+      this.increase();
       this.currentDemand.countdown.remove();
       this.getNextDemand();
     }
   }
 
-  update(time, delta) {}
+  increase() {
+    this.food += 1;
+    console.log(`Food: ${this.food}`);
+    if (this.food >= 5) {
+      this.defaultScale *= 1.5;
+      this.fruitAmount += 0.5;
+      this.clearAnimations();
+      this.scene.tweens.add({
+        targets: this.sprite,
+        scaleX: this.defaultScale,
+        scaleY: this.defaultScale,
+        duration: 1000,
+        onComplete: () => {
+          this.startAnimation();
+        },
+      });
+      this.demandTime -= 3;
+      this.food = 0;
+    }
+  }
 
   destroy() {
+    this.clearAnimations();
     this.currentDemand.countdown.remove();
     this.sprite.destroy();
   }

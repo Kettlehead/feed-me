@@ -8,8 +8,10 @@ export default class GameOver extends Phaser.Scene {
 
   create(data) {
     let message = `A terrible shame that you have died.\n\nPress any key to restart.\n\nYou scored: ${data.score}.`;
-    if (true || data.vizbigDead) {
+    if (data.vizbigDead) {
       message = `A terrible shame that Vizbig died.\n\nYou have no way of surviving the wasteland now.\n\nYou scored: ${data.score}.`;
+    } else {
+      message = `Well done for surviving another day.\n\nVizbig shrinks down once more...\n\nYou'll get to do this all again tomorrow\n\nYou scored: ${data.score}.`;
     }
     const finalText = this.add.bitmapText(20, 14, "alagard", message);
     Phaser.Display.Align.In.Center(

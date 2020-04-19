@@ -66,6 +66,10 @@ export default class HUD extends Phaser.Scene {
     this.playerHealth.text = `SURVIVOR HEALTH: ${health}%`;
   }
 
+  setGameTimer(timer) {
+    this.gameTimer = timer;
+  }
+
   update(time, delta) {
     //console.log(this.currentDemand);
     if (this.currentDemand && this.currentDemand.countdown) {
@@ -78,6 +82,9 @@ export default class HUD extends Phaser.Scene {
         200 * (1 - this.currentDemand.countdown.getProgress()),
         4
       );
+    }
+    if (this.gameTimer) {
+      //update timer bar!
     }
   }
 }
