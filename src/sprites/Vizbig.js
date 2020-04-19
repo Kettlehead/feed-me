@@ -11,12 +11,13 @@ class Demand {
 export default class Vizbig {
   constructor(scene, x, y) {
     this.scene = scene;
+    this.seconds = 100;
     this.sprite = scene.physics.add.sprite(x, y, "atlas", "mutant-plant");
     this.demandQueue = [
-      new Demand(DEMAND.WATER, 20000),
-      new Demand(DEMAND.BONES, 15000),
-      new Demand(DEMAND.SLUDGE, 15000),
-      new Demand(DEMAND.WATER, 13000),
+      new Demand(DEMAND.WATER, 20 * this.seconds),
+      new Demand(DEMAND.BONES, 15 * this.seconds),
+      new Demand(DEMAND.SLUDGE, 15 * this.seconds),
+      new Demand(DEMAND.WATER, 13 * this.seconds),
     ];
     this.health = 100;
     this.dead = false;
@@ -64,7 +65,7 @@ export default class Vizbig {
           DEMAND.BONES,
           DEMAND.SLUDGE,
         ]),
-        11000
+        11 * this.seconds
       )
     );
   }

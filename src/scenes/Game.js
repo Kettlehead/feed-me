@@ -175,6 +175,8 @@ export default class Game extends Phaser.Scene {
     this.tank.update();
 
     if (this.vizbig.dead || this.player.dead) {
+      const HUD = this.scene.get(SCENE.HUD);
+      HUD.scene.stop();
       this.scene.start(SCENE.GAME_OVER);
     }
   }
