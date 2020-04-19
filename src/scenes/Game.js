@@ -128,6 +128,21 @@ export default class Game extends Phaser.Scene {
     });
 
     this.events.on("spawn_fruit", this.spawnFruit, this);
+
+    this.dropSound = this.sound.add("dropSFX");
+    this.events.on("drop", () => {
+      this.dropSound.play();
+    });
+    this.pickupSound = this.sound.add("pickupSFX");
+    this.events.on("pickup", () => {
+      this.pickupSound.play();
+    });
+    this.scoreSound = this.sound.add("scoreSFX");
+    this.events.on("score_fruit", () => {
+      this.scoreSound.play();
+    });
+    this.splashSound = this.sound.add("splashSFX");
+    this.goopSound = this.sound.add("goopSFX");
   }
 
   spawnFruit(amount) {
@@ -156,6 +171,7 @@ export default class Game extends Phaser.Scene {
       this.vizbig.feedWater();
     } else if (currentTile.properties.wet) {
       this.events.emit("fill_bucket");
+      this.splashSound.play();
     } else {
       this.events.emit("drop");
     }
@@ -180,6 +196,7 @@ export default class Game extends Phaser.Scene {
       this.vizbig.feedSludge();
     } else if (currentTile.properties.toxic) {
       this.events.emit("fill_tank");
+      this.goopSound.play();
     } else {
       this.events.emit("drop");
     }
@@ -259,12 +276,14 @@ export default class Game extends Phaser.Scene {
   cleanUp() {
     this.music.stop();
     this.events.removeAllListeners("pickup");
+    this.events.removeAllListeners("drop");
     this.events.removeAllListeners("spawn_fruit");
+    this.events.removeAllListeners("score_fruit");
     this.events.removeAllListeners("carry_action");
     this.events.removeAllListeners("attempt_pickup");
     this.bucket.destroy();
     this.tank.destroy();
     this.player.destroy();
-    //clear this.gameTimer
+    this.gameTimer.remove();
   }
 }

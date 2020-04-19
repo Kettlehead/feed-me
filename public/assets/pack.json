@@ -13,6 +13,11 @@
         "url": "assets/alagard.fnt"
       },
       {
+        "type": "xml",
+        "key": "feedMe",
+        "url": "assets/feedMe.fnt"
+      },
+      {
         "type": "tilemapTiledJSON",
         "key": "world",
         "url": "assets/world.json"
@@ -26,6 +31,46 @@
         "type": "audio",
         "key": "backgroundMusic",
         "url": "assets/BackgroundMusic.mp3"
+      },
+      {
+        "type": "audio",
+        "key": "dropSFX",
+        "url": "assets/sfx/Drop.wav"
+      },
+      {
+        "type": "audio",
+        "key": "failedEmptySFX",
+        "url": "assets/sfx/FailedEmpty.wav"
+      },
+      {
+        "type": "audio",
+        "key": "vizbigEatsSFX",
+        "url": "assets/sfx/VizbigEats.wav"
+      },
+      {
+        "type": "audio",
+        "key": "vizbigHurtsSFX",
+        "url": "assets/sfx/VizbigHurts.wav"
+      },
+      {
+        "type": "audio",
+        "key": "pickupSFX",
+        "url": "assets/sfx/Pickup.wav"
+      },
+      {
+        "type": "audio",
+        "key": "scoreSFX",
+        "url": "assets/sfx/Score.wav"
+      },
+      {
+        "type": "audio",
+        "key": "goopSFX",
+        "url": "assets/sfx/Goop.wav"
+      },
+      {
+        "type": "audio",
+        "key": "splashSFX",
+        "url": "assets/sfx/Splash.wav"
       }
     ]
   }

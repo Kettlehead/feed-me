@@ -22,6 +22,10 @@ export default class Bones {
       if (!this.destroyed && this.alive) {
         this.beingCarried = false;
         this.sprite.body.setVelocity(0);
+        this.sprite.setPosition(
+          this.scene.player.sprite.x + 10,
+          this.scene.player.sprite.y + 20
+        );
       }
     });
   }

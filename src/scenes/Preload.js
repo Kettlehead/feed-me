@@ -62,6 +62,13 @@ export default class Preload extends Phaser.Scene {
         "alagard",
         "alagard"
       );
+      Phaser.GameObjects.BitmapText.ParseFromAtlas(
+        this,
+        "feedMe",
+        "atlas",
+        "feedMe",
+        "feedMe"
+      );
       //this.scene.launch(SCENE.HUD);
       this.scene.start(SCENE.MENU);
     } else {

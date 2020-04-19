@@ -14,6 +14,9 @@ export default class Vizbig {
     this.defaultScale = 1.5;
     this.demandTime = 11;
     this.fruitAmount = 1;
+    this.hurtSound = this.scene.sound.add("vizbigHurtsSFX");
+    this.eatSound = this.scene.sound.add("vizbigEatsSFX");
+    this.failSound = this.scene.sound.add("failedEmptySFX");
     this.sprite = scene.physics.add
       .sprite(x + 10, y + 20, "atlas", "mutant-plant")
       .setOrigin(0.5, 1)
@@ -33,14 +36,6 @@ export default class Vizbig {
     this.size = "small";
     this.food = 0;
     this.getNextDemand();
-    /**this.scene.time.addEvent({
-      delay: 1000,
-      repeat: 5,
-
-      callback: () => {
-        this.scene.events.emit("spawn_fruit");
-      },
-    });*/
   }
 
   startAnimation() {
@@ -71,6 +66,7 @@ export default class Vizbig {
   }
 
   failDemand() {
+    this.hurtSound.play();
     this.hurt(10);
     this.getNextDemand();
   }
@@ -121,11 +117,14 @@ export default class Vizbig {
 
   checkDemand(fed) {
     if (this.currentDemand.type === fed) {
+      this.eatSound.play();
       this.scene.events.emit("spawn_fruit", Math.floor(this.fruitAmount));
       this.heal(5);
       this.increase();
       this.currentDemand.countdown.remove();
       this.getNextDemand();
+    } else {
+      this.failSound.play();
     }
   }
 

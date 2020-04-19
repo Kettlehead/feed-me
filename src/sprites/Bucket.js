@@ -26,6 +26,10 @@ export default class Bucket {
           this.beingCarried = false;
           if (this.alive) {
             this.sprite.body.setVelocity(0);
+            this.sprite.setPosition(
+              this.scene.player.sprite.x + 10,
+              this.scene.player.sprite.y + 20
+            );
           }
         });
       }

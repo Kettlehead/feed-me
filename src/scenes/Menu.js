@@ -8,17 +8,26 @@ export default class Menu extends Phaser.Scene {
 
   create() {
     this.cameras.main.setBackgroundColor(0x263d0a);
-    this.add.image(
+    /**this.add.image(
       this.cameras.main.centerX,
       this.cameras.main.centerY - 100,
       "atlas",
       "menu-title"
+    );*/
+    const menuText = this.add.bitmapText(
+      this.cameras.main.centerX,
+      100,
+      "feedMe",
+      "Feed Me!",
+      128
     );
+    menuText.x -= menuText.width / 2;
     const startText = this.add.bitmapText(
       0,
       0,
       "alagard",
-      "Press any key to start"
+      "Press any key to start",
+      32
     );
     Phaser.Display.Align.In.Center(
       startText,
@@ -29,7 +38,7 @@ export default class Menu extends Phaser.Scene {
         this.cameras.main.height
       )
     );
-    startText.y += 50;
+    startText.y += 90;
     this.input.keyboard.on("keydown", () => {
       const cam = this.cameras.main;
       cam.fade(500, 0, 0, 0);
