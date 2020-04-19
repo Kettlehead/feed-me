@@ -6,6 +6,7 @@ export default class Bones {
     this.scene.bonesGroup.add(this.sprite);
     this.sprite.body.setCollideWorldBounds();
     this.sprite.data = this;
+    this.alive = true;
   }
 
   pickup() {
@@ -15,8 +16,10 @@ export default class Bones {
       this.scene.player.sprite.y + 5
     );
     this.scene.events.once("drop", () => {
-      this.beingCarried = false;
-      this.sprite.body.setVelocity(0);
+      if (!this.destroyed && this.alive) {
+        this.beingCarried = false;
+        this.sprite.body.setVelocity(0);
+      }
     });
   }
 
@@ -30,6 +33,10 @@ export default class Bones {
   }
 
   destroy() {
-    this.sprite.destroy();
+    if (this.alive) {
+      console.log("destroy bones!");
+      this.alive = false;
+      //this.sprite.destroy();
+    }
   }
 }

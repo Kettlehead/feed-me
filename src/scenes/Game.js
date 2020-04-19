@@ -80,6 +80,12 @@ export default class Game extends Phaser.Scene {
         case "carrying_bucket":
           this.checkBucketAction();
           break;
+        case "carrying_tank":
+          this.checkTankAction();
+          break;
+        case "carrying_bones":
+          this.checkBonesAction();
+          break;
         default:
           this.events.emit("drop");
           break;
@@ -92,11 +98,72 @@ export default class Game extends Phaser.Scene {
       this.player.sprite.x,
       this.player.sprite.y
     );
-    if (currentTile.properties.wet) {
+    if (
+      this.bucket.service.state.value == "full" &&
+      Phaser.Math.Distance.Between(
+        this.bucket.sprite.x,
+        this.bucket.sprite.y,
+        this.vizbig.sprite.x,
+        this.vizbig.sprite.y
+      ) < 200
+    ) {
+      this.events.emit("empty_bucket");
+      this.events.emit("drop");
+      this.vizbig.feedWater();
+    } else if (currentTile.properties.wet) {
       this.events.emit("fill_bucket");
     } else {
       this.events.emit("drop");
     }
+  }
+
+  checkTankAction() {
+    const currentTile = this.layer.getTileAtWorldXY(
+      this.player.sprite.x,
+      this.player.sprite.y
+    );
+    if (
+      this.tank.full &&
+      Phaser.Math.Distance.Between(
+        this.tank.sprite.x,
+        this.tank.sprite.y,
+        this.vizbig.sprite.x,
+        this.vizbig.sprite.y
+      ) < 200
+    ) {
+      this.events.emit("empty_tank");
+      this.events.emit("drop");
+      this.vizbig.feedSludge();
+    } else if (currentTile.properties.toxic) {
+      this.events.emit("fill_tank");
+    } else {
+      this.events.emit("drop");
+    }
+  }
+
+  checkBonesAction() {
+    if (
+      Phaser.Math.Distance.Between(
+        this.player.sprite.x,
+        this.player.sprite.y,
+        this.vizbig.sprite.x,
+        this.vizbig.sprite.y
+      ) < 200
+    ) {
+      let oldBones;
+      this.bonesGroup.getChildren().forEach((bones) => {
+        if (bones.data.beingCarried) {
+          oldBones = bones;
+        }
+      });
+      if (oldBones) {
+        this.bonesGroup.remove(oldBones);
+        oldBones.destroy();
+      }
+
+      this.vizbig.feedBones();
+    }
+    this.events.emit("drop");
   }
 
   update(time, delta) {

@@ -9,6 +9,9 @@ export default class Bucket {
     this.scene.events.on("fill_bucket", () => {
       this.service.send("FILL");
     });
+    this.scene.events.on("empty_bucket", () => {
+      this.service.send("EMPTY");
+    });
     this.scene.events.on("pickup", (item) => {
       if (item === "BUCKET") {
         this.beingCarried = true;

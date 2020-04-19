@@ -1,36 +1,102 @@
 import { createMachine, interpret } from "@xstate/fsm";
+import { DEMAND } from "./DemandType";
+
+class Demand {
+  constructor(type, time) {
+    this.type = type;
+    this.time = time;
+  }
+}
 
 export default class Vizbig {
   constructor(scene, x, y) {
     this.scene = scene;
     this.sprite = scene.physics.add.sprite(x, y, "atlas", "mutant-plant");
-    this.demandQueue = ["WATER", "BONES", "WATER", "SLUDGE"];
+    this.demandQueue = [
+      new Demand(DEMAND.WATER, 20000),
+      new Demand(DEMAND.BONES, 15000),
+      new Demand(DEMAND.SLUDGE, 15000),
+      new Demand(DEMAND.WATER, 13000),
+    ];
     this.health = 100;
-    this.scene.time.addEvent({
-      delay: 10000,
-      loop: true,
-      callback: this.popDemand,
-      callbackScope: this,
-      startAt: 9000,
-    });
+    this.dead = false;
+    this.size = "small";
+    this.getNextDemand();
   }
 
-  popDemand() {
-    const demand = this.demandQueue.shift();
-    console.warn(`FEED ME ${demand}!`);
-    this.scene.events.emit("vizbig_demand", demand);
+  getNextDemand() {
+    this.currentDemand = this.demandQueue.shift();
+    this.currentDemand.countdown = this.scene.time.addEvent({
+      delay: this.currentDemand.time,
+      callback: () => {
+        this.failDemand();
+      },
+    });
+    this.scene.events.emit("vizbig_demand", this.currentDemand);
     this.addDemand();
+  }
+
+  failDemand() {
+    this.hurt(10);
+    this.getNextDemand();
+  }
+
+  hurt(amount) {
+    this.health -= amount;
+    if (this.health <= 0) {
+      this.dead = true;
+    }
+    console.warn(`ARRRGH! (${this.health}%)`);
+    this.scene.events.emit("vizbig_health", this.health);
+  }
+
+  heal(amount) {
+    this.health += amount;
+    this.health = Math.min(this.health, 100);
+    this.scene.events.emit("vizbig_health", this.health);
   }
 
   addDemand() {
     this.demandQueue.push(
-      Phaser.Utils.Array.GetRandom(["WATER", "BONES", "SLUDGE"])
+      new Demand(
+        Phaser.Utils.Array.GetRandom([
+          DEMAND.WATER,
+          DEMAND.BONES,
+          DEMAND.SLUDGE,
+        ]),
+        11000
+      )
     );
+  }
+
+  feedSludge() {
+    console.warn("MMM! TASTY SLUDGE!");
+    this.checkDemand(DEMAND.SLUDGE);
+  }
+
+  feedWater() {
+    console.warn("MMM! TASTY WATER!");
+    this.checkDemand(DEMAND.WATER);
+  }
+
+  feedBones() {
+    console.warn("MMM! TASTY BONES!");
+    this.checkDemand(DEMAND.BONES);
+  }
+
+  checkDemand(fed) {
+    if (this.currentDemand.type === fed) {
+      console.log("Demand Met.");
+      this.heal(5);
+      this.currentDemand.countdown.remove();
+      this.getNextDemand();
+    }
   }
 
   update(time, delta) {}
 
   destroy() {
+    this.currentDemand.countdown.remove();
     this.sprite.destroy();
   }
 }

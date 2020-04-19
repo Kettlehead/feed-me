@@ -86,7 +86,7 @@ export default class Player {
     this.carryService = interpret(this.carryingMachine).start();
     this.carryService.subscribe((state) => {
       if (state.changed) {
-        console.log(state);
+        console.log(state.value);
       }
     });
   }

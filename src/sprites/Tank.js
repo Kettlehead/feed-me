@@ -5,14 +5,22 @@ export default class Bones {
     this.full = false;
     this.sprite = scene.physics.add.sprite(x, y, "atlas", "empty-tank");
     this.sprite.body.setCollideWorldBounds();
+    this.scene.events.on("fill_tank", () => {
+      this.fill();
+    });
+    this.scene.events.on("empty_tank", () => {
+      this.empty();
+    });
   }
 
   fill() {
+    console.log("Filling tank...");
     this.full = true;
     this.sprite.setTexture("atlas", "full-tank");
   }
 
   empty() {
+    console.log("Emptying tank...");
     this.full = false;
     this.sprite.setTexture("atlas", "empty-tank");
   }
@@ -35,12 +43,10 @@ export default class Bones {
 
   update() {
     if (this.beingCarried) {
-      if (!this.scene.player.colliding) {
-        this.sprite.body.setVelocity(
-          this.scene.player.sprite.body.velocity.x,
-          this.scene.player.sprite.body.velocity.y
-        );
-      }
+      this.sprite.body.setVelocity(
+        this.scene.player.sprite.body.velocity.x,
+        this.scene.player.sprite.body.velocity.y
+      );
     }
   }
 
