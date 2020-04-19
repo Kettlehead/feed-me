@@ -17,15 +17,21 @@ export default class Game extends Phaser.Scene {
     this.music = this.sound.add("backgroundMusic");
     this.music.setVolume(0.5);
     this.music.setLoop(true);
-    this.music.play();
+    //this.music.play();
     this.map = this.make.tilemap({ key: "world" });
+    const vizbigSpawn = this.map.findObject(
+      "Objects",
+      (obj) => obj.name === "Vizbig"
+    );
     this.physics.world.bounds.width = this.map.widthInPixels;
     this.physics.world.bounds.height = this.map.heightInPixels;
     this.tileset = this.map.addTilesetImage("Tiles");
     this.layer = this.map.createStaticLayer("Ground", this.tileset, 0, 0);
-    this.rootsLayer = this.map.createStaticLayer("Roots", this.tileset, 0, 0);
+    this.add.image(vizbigSpawn.x, vizbigSpawn.y, "atlas", "roots");
+    //this.rootsLayer = this.map.createStaticLayer("Roots", this.tileset, 0, 0);
     //this.layer.setCollisionByProperty({ collides: true });
     this.score = 0;
+    this.dropDistance = 140;
 
     const spawnPoint = this.map.findObject(
       "Objects",
@@ -59,10 +65,6 @@ export default class Game extends Phaser.Scene {
     camera.startFollow(this.player.sprite);
     camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
-    const vizbigSpawn = this.map.findObject(
-      "Objects",
-      (obj) => obj.name === "Vizbig"
-    );
     this.vizbig = new Vizbig(this, vizbigSpawn.x, vizbigSpawn.y);
 
     this.events.on("attempt_pickup", () => {
@@ -119,10 +121,10 @@ export default class Game extends Phaser.Scene {
   }
 
   spawnFruit() {
-    for (let i = 0; i < 3; i++) {
-      const fruit = new Fruit(this, this.vizbig.sprite.x, this.vizbig.sprite.y);
-      this.add.existing(fruit);
-    }
+    //for (let i = 0; i < 3; i++) {
+    const fruit = new Fruit(this, this.vizbig.sprite.x, this.vizbig.sprite.y);
+    this.add.existing(fruit);
+    //}
   }
 
   checkBucketAction() {
@@ -137,7 +139,7 @@ export default class Game extends Phaser.Scene {
         this.bucket.sprite.y,
         this.vizbig.sprite.x,
         this.vizbig.sprite.y
-      ) < 120
+      ) < this.dropDistance
     ) {
       this.events.emit("empty_bucket");
       //this.events.emit("drop");
@@ -161,7 +163,7 @@ export default class Game extends Phaser.Scene {
         this.tank.sprite.y,
         this.vizbig.sprite.x,
         this.vizbig.sprite.y
-      ) < 200
+      ) < this.dropDistance
     ) {
       this.events.emit("empty_tank");
       //this.events.emit("drop");
@@ -180,7 +182,7 @@ export default class Game extends Phaser.Scene {
         this.player.sprite.y,
         this.vizbig.sprite.x,
         this.vizbig.sprite.y
-      ) < 200
+      ) < this.dropDistance
     ) {
       let oldBones;
       this.bonesGroup.getChildren().forEach((bones) => {

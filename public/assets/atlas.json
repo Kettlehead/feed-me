@@ -4,8 +4,8 @@
 			"image": "atlas.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 641,
-				"h": 208
+				"w": 518,
+				"h": 485
 			},
 			"scale": 1,
 			"frames": [
@@ -31,6 +31,27 @@
 					}
 				},
 				{
+					"filename": "roots",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 288,
+						"h": 288
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 2,
+						"w": 283,
+						"h": 286
+					},
+					"frame": {
+						"x": 1,
+						"y": 198,
+						"w": 283,
+						"h": 286
+					}
+				},
+				{
 					"filename": "alagard",
 					"rotated": false,
 					"trimmed": true,
@@ -45,8 +66,8 @@
 						"h": 130
 					},
 					"frame": {
-						"x": 519,
-						"y": 1,
+						"x": 286,
+						"y": 198,
 						"w": 121,
 						"h": 130
 					}
@@ -66,9 +87,30 @@
 						"h": 48
 					},
 					"frame": {
-						"x": 519,
-						"y": 133,
+						"x": 409,
+						"y": 198,
 						"w": 48,
+						"h": 48
+					}
+				},
+				{
+					"filename": "mutant-plant",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 48,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 44,
+						"h": 48
+					},
+					"frame": {
+						"x": 459,
+						"y": 198,
+						"w": 44,
 						"h": 48
 					}
 				},
@@ -87,73 +129,10 @@
 						"h": 24
 					},
 					"frame": {
-						"x": 519,
-						"y": 183,
+						"x": 409,
+						"y": 248,
 						"w": 24,
 						"h": 24
-					}
-				},
-				{
-					"filename": "empty-tank",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 24,
-						"h": 24
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 20,
-						"h": 24
-					},
-					"frame": {
-						"x": 545,
-						"y": 183,
-						"w": 20,
-						"h": 24
-					}
-				},
-				{
-					"filename": "full-tank",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 24,
-						"h": 24
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 20,
-						"h": 24
-					},
-					"frame": {
-						"x": 567,
-						"y": 183,
-						"w": 20,
-						"h": 24
-					}
-				},
-				{
-					"filename": "mutant-plant",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 48,
-						"h": 48
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 44,
-						"h": 48
-					},
-					"frame": {
-						"x": 569,
-						"y": 133,
-						"w": 44,
-						"h": 48
 					}
 				},
 				{
@@ -171,8 +150,8 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 615,
-						"y": 133,
+						"x": 435,
+						"y": 248,
 						"w": 24,
 						"h": 22
 					}
@@ -192,10 +171,52 @@
 						"h": 22
 					},
 					"frame": {
-						"x": 615,
-						"y": 157,
+						"x": 461,
+						"y": 248,
 						"w": 24,
 						"h": 22
+					}
+				},
+				{
+					"filename": "empty-tank",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 24,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 20,
+						"h": 24
+					},
+					"frame": {
+						"x": 487,
+						"y": 248,
+						"w": 20,
+						"h": 24
+					}
+				},
+				{
+					"filename": "full-tank",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 24,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 20,
+						"h": 24
+					},
+					"frame": {
+						"x": 435,
+						"y": 272,
+						"w": 20,
+						"h": 24
 					}
 				},
 				{
@@ -213,8 +234,8 @@
 						"h": 15
 					},
 					"frame": {
-						"x": 615,
-						"y": 181,
+						"x": 409,
+						"y": 274,
 						"w": 15,
 						"h": 15
 					}
@@ -225,6 +246,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:c7b76dce82dd6fa13ca5d5b2d31ab057:864f249a07bd3aa1411c2ae9bbcfe6ab:cbce6b53f0f49e0bf15173c25c41f876$"
+		"smartupdate": "$TexturePacker:SmartUpdate:e546c990c4165f21564af988f88c15c9:c40c7c3dccebc0e8632d55c2cdfeadac:cbce6b53f0f49e0bf15173c25c41f876$"
 	}
 }

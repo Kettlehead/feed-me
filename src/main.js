@@ -3,7 +3,7 @@ import Phaser from "phaser";
 import Preload from "./scenes/Preload";
 import Menu from "./scenes/Menu";
 import Intro from "./scenes/Intro";
-import Settings from "./scenes/Settings";
+//import Settings from "./scenes/Settings";
 import Game from "./scenes/Game";
 import HUD from "./scenes/HUD";
 import GameOver from "./scenes/GameOver";
@@ -23,7 +23,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [Preload, Menu, Settings, Intro, HUD, Game, GameOver],
+  scene: [Preload, Menu, Intro, HUD, Game, GameOver],
 };
 
 export default new Phaser.Game(config);
