@@ -34,7 +34,9 @@ export default class HUD extends Phaser.Scene {
     this.demandText = this.add
       .bitmapText(580, 14, "alagard", `VIZBIG DEMANDS: NOTHING!`)
       .setScrollFactor(0);
-
+    this.demandTimer = this.add.graphics().setScrollFactor(0);
+    this.demandTimer.fillStyle(0xffffff, 1);
+    this.demandTimer.fillRect(580, 20, 100, 4);
     const gameScene = this.scene.get(SCENE.GAME);
     gameScene.events.on("vizbig_demand", this.updateDemand, this);
     gameScene.events.on("vizbig_queue", this.updateQueue, this);
@@ -43,8 +45,8 @@ export default class HUD extends Phaser.Scene {
   }
 
   updateDemand(demand) {
-    this.currentDemand = demand.type;
-    this.demandText.text = `VIZBIG DEMANDS: ${this.currentDemand}!`;
+    this.currentDemand = demand;
+    this.demandText.text = `VIZBIG DEMANDS: ${this.currentDemand.type}!`;
   }
 
   updateQueue(queue) {}
@@ -55,5 +57,20 @@ export default class HUD extends Phaser.Scene {
 
   updatePlayerHealth(health) {
     this.playerHealth.text = `SURVIVOR HEALTH: ${health}%`;
+  }
+
+  update(time, delta) {
+    //console.log(this.currentDemand);
+    if (this.currentDemand && this.currentDemand.countdown) {
+      //console.log(this.demandTimer.scaleX);
+      this.demandTimer.clear();
+      this.demandTimer.fillStyle(0xffffff, 1);
+      this.demandTimer.fillRect(
+        580,
+        38,
+        200 * (1 - this.currentDemand.countdown.getProgress()),
+        4
+      );
+    }
   }
 }

@@ -11,7 +11,7 @@ class Demand {
 export default class Vizbig {
   constructor(scene, x, y) {
     this.scene = scene;
-    this.seconds = 100;
+    this.seconds = 400;
     this.sprite = scene.physics.add.sprite(x, y, "atlas", "mutant-plant");
     this.demandQueue = [
       new Demand(DEMAND.WATER, 20 * this.seconds),
@@ -49,6 +49,7 @@ export default class Vizbig {
     }
     console.warn(`ARRRGH! (${this.health}%)`);
     this.scene.events.emit("vizbig_health", this.health);
+    this.scene.cameras.main.shake(400, new Phaser.Math.Vector2(0, 0.005));
   }
 
   heal(amount) {
