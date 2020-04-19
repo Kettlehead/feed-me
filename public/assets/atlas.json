@@ -197,6 +197,27 @@
 						"w": 24,
 						"h": 22
 					}
+				},
+				{
+					"filename": "fruit",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 15,
+						"h": 15
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 15,
+						"h": 15
+					},
+					"frame": {
+						"x": 615,
+						"y": 181,
+						"w": 15,
+						"h": 15
+					}
 				}
 			]
 		}
@@ -204,6 +225,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:63a353bc89c8e9d372e9d97806c2051a:6cab6780fbc249df21d4acde9f6a8906:cbce6b53f0f49e0bf15173c25c41f876$"
+		"smartupdate": "$TexturePacker:SmartUpdate:c7b76dce82dd6fa13ca5d5b2d31ab057:864f249a07bd3aa1411c2ae9bbcfe6ab:cbce6b53f0f49e0bf15173c25c41f876$"
 	}
 }

@@ -41,6 +41,9 @@ export default class Player {
               },
             },
             FRUIT: "carrying_fruit",
+            actions: () => {
+              console.log("Pickup fruit");
+            },
           },
         },
         carrying_bucket: {

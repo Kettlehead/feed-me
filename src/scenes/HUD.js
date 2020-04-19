@@ -30,7 +30,9 @@ export default class HUD extends Phaser.Scene {
       .bitmapText(200, 14, "alagard", `SURVIVOR HEALTH: ${100}%`)
       .setScrollFactor(0);
 
-    //this.currentDemand = "NOTHING";
+    this.scoreText = this.add
+      .bitmapText(450, 14, "alagard", "SCORE: 0")
+      .setScrollFactor(0);
     this.demandText = this.add
       .bitmapText(580, 14, "alagard", `VIZBIG DEMANDS: NOTHING!`)
       .setScrollFactor(0);
@@ -42,6 +44,11 @@ export default class HUD extends Phaser.Scene {
     gameScene.events.on("vizbig_queue", this.updateQueue, this);
     gameScene.events.on("vizbig_health", this.updateVizbigHealth, this);
     gameScene.events.on("player_health", this.updatePlayerHealth, this);
+    gameScene.events.on("score_fruit", this.updateScore, this);
+  }
+
+  updateScore(score) {
+    this.scoreText.text = `SCORE: ${score}`;
   }
 
   updateDemand(demand) {

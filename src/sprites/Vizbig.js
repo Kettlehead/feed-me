@@ -23,6 +23,14 @@ export default class Vizbig {
     this.dead = false;
     this.size = "small";
     this.getNextDemand();
+    /**this.scene.time.addEvent({
+      delay: 1000,
+      repeat: 5,
+
+      callback: () => {
+        this.scene.events.emit("spawn_fruit");
+      },
+    });*/
   }
 
   getNextDemand() {
@@ -89,6 +97,10 @@ export default class Vizbig {
   checkDemand(fed) {
     if (this.currentDemand.type === fed) {
       console.log("Demand Met.");
+      if (Math.random() > 0) {
+        //0.5
+        this.scene.events.emit("spawn_fruit");
+      }
       this.heal(5);
       this.currentDemand.countdown.remove();
       this.getNextDemand();
