@@ -10,7 +10,7 @@ class Demand {
 export default class Vizbig {
   constructor(scene, x, y) {
     this.scene = scene;
-    this.seconds = 1500;
+    this.seconds = 1400;
     this.defaultScale = 1.5;
     this.demandTime = 11;
     this.fruitAmount = 1;

@@ -22,18 +22,29 @@ export default class Intro extends Phaser.Scene {
       150,
       "When fed, it will bear fruit. Carry fruit home to score."
     );
-    this.addText(170, "You must keep Vizbig alive by feeding it.");
+    this.addText(
+      170,
+      "Drop water, sludge and bones onto Vizbig's roots to feed it."
+    );
     this.addText(210, "Water is to the West");
     this.addText(230, "Toxic Sludge is to the South");
     this.addText(250, "Bones are to the East");
 
     this.addText(290, "Use the bucket to collect water");
-    this.addText(310, "Use the tank to collect sludge");
-    this.addText(330, "Bones and fruit can be picked up by hand");
+    const background = this.add.graphics();
+    background.fillStyle(0xeeeeee, 0.8);
+    background.fillRect(580 - 40, 280, 30, 30);
+    this.add.image(594 - 40, 296, "atlas", "empty-bucket");
+    this.addText(346, "Use the tank to collect sludge");
+    const sludge = this.add.graphics();
+    sludge.fillStyle(0xeeeeee, 0.8);
+    sludge.fillRect(580 - 40, 280 + 60, 30, 30);
+    this.add.image(594 - 40, 296 + 60, "atlas", "empty-tank");
+    this.addText(316, "Bones and fruit can be picked up by hand");
 
-    this.addText(370, "Arrow keys control your movement");
+    this.addText(380, "Arrow keys control your movement");
     const endText = this.addText(
-      390,
+      400,
       "Space to pick up / drop / deliver / empty"
     );
 

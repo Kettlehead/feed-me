@@ -15,7 +15,7 @@ export default class Game extends Phaser.Scene {
   create() {
     this.cameras.main.setBackgroundColor(0x263d0a);
     this.music = this.sound.add("backgroundMusic");
-    this.music.setVolume(0.5);
+    this.music.setVolume(0.3);
     this.music.setLoop(true);
     this.gameOver = false;
     const gameLimit = 4 * 60 * 1000;
@@ -25,7 +25,9 @@ export default class Game extends Phaser.Scene {
         this.gameOver = true;
       },
     });
-    this.music.play();
+    const HUD = this.scene.get(SCENE.HUD);
+    HUD.setGameTimer(this.gameTimer);
+    //this.music.play();
     this.map = this.make.tilemap({ key: "world" });
     const vizbigSpawn = this.map.findObject(
       "Objects",
