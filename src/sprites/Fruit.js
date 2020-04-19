@@ -1,7 +1,6 @@
 export default class Fruit extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y) {
     super(scene, x, y, "atlas", "fruit");
-    //this.scene.physics.world.enable(this);
     this.scene.fruitGroup.add(this);
     this.alive = true;
     let xVelocity = Phaser.Math.Between(0, 120);

@@ -3,6 +3,7 @@ import { createMachine, interpret } from "@xstate/fsm";
 export default class Bucket {
   constructor(scene, x, y, player) {
     this.scene = scene;
+    this.alive = true;
     this.player = player;
     this.beingCarried = false;
     this.sprite = scene.physics.add.sprite(x, y, "atlas", "empty-bucket");
@@ -21,7 +22,9 @@ export default class Bucket {
         );
         this.scene.events.once("drop", () => {
           this.beingCarried = false;
-          this.sprite.body.setVelocity(0);
+          if (this.alive) {
+            this.sprite.body.setVelocity(0);
+          }
         });
       }
     });
@@ -59,7 +62,7 @@ export default class Bucket {
   }
 
   update() {
-    if (this.beingCarried) {
+    if (this.beingCarried && this.alive) {
       this.sprite.body.setVelocity(
         this.player.sprite.body.velocity.x,
         this.player.sprite.body.velocity.y
@@ -68,6 +71,10 @@ export default class Bucket {
   }
 
   destroy() {
+    this.alive = false;
+    this.scene.events.removeAllListeners("fill_bucket");
+    this.scene.events.removeAllListeners("empty_bucket");
+    this.scene.events.removeAllListeners("pickup");
     this.sprite.destroy();
     this.service.stop();
   }

@@ -111,16 +111,14 @@ export default class Game extends Phaser.Scene {
       }
     });
 
-    this.events.on("spawn_fruit", () => {
-      for (let i = 0; i < 3; i++) {
-        const fruit = new Fruit(
-          this,
-          this.vizbig.sprite.x,
-          this.vizbig.sprite.y
-        );
-        this.add.existing(fruit);
-      }
-    });
+    this.events.on("spawn_fruit", this.spawnFruit, this);
+  }
+
+  spawnFruit() {
+    for (let i = 0; i < 3; i++) {
+      const fruit = new Fruit(this, this.vizbig.sprite.x, this.vizbig.sprite.y);
+      this.add.existing(fruit);
+    }
   }
 
   checkBucketAction() {
@@ -233,6 +231,11 @@ export default class Game extends Phaser.Scene {
     if (this.vizbig.dead || this.player.dead) {
       const HUD = this.scene.get(SCENE.HUD);
       HUD.scene.stop();
+      this.events.removeAllListeners("pickup");
+      this.events.removeAllListeners("spawn_fruit");
+      this.events.removeAllListeners("carry_action");
+      this.events.removeAllListeners("attempt_pickup");
+      this.bucket.destroy();
       this.scene.start(SCENE.GAME_OVER, { vizbigDead: this.vizbig.dead });
     }
   }
