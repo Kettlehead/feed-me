@@ -231,12 +231,18 @@ export default class Game extends Phaser.Scene {
     if (this.vizbig.dead || this.player.dead) {
       const HUD = this.scene.get(SCENE.HUD);
       HUD.scene.stop();
-      this.events.removeAllListeners("pickup");
-      this.events.removeAllListeners("spawn_fruit");
-      this.events.removeAllListeners("carry_action");
-      this.events.removeAllListeners("attempt_pickup");
-      this.bucket.destroy();
+      this.cleanUp();
       this.scene.start(SCENE.GAME_OVER, { vizbigDead: this.vizbig.dead });
     }
+  }
+
+  cleanUp() {
+    this.events.removeAllListeners("pickup");
+    this.events.removeAllListeners("spawn_fruit");
+    this.events.removeAllListeners("carry_action");
+    this.events.removeAllListeners("attempt_pickup");
+    this.bucket.destroy();
+    this.tank.destroy();
+    this.player.destroy();
   }
 }

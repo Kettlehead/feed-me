@@ -16,10 +16,12 @@ export default class Bucket {
     this.scene.events.on("pickup", (item) => {
       if (item === "BUCKET") {
         this.beingCarried = true;
-        this.sprite.setPosition(
-          this.player.sprite.x + 10,
-          this.player.sprite.y + 5
-        );
+        if (this.alive) {
+          this.sprite.setPosition(
+            this.player.sprite.x + 10,
+            this.player.sprite.y + 5
+          );
+        }
         this.scene.events.once("drop", () => {
           this.beingCarried = false;
           if (this.alive) {

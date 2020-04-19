@@ -1,4 +1,4 @@
-export default class Bones {
+export default class Tank {
   constructor(scene, x, y) {
     this.scene = scene;
     this.beingCarried = false;
@@ -51,6 +51,9 @@ export default class Bones {
   }
 
   destroy() {
+    this.scene.events.removeAllListeners("fill_tank");
+    this.scene.events.removeAllListeners("empty_tank");
+    this.scene.events.removeAllListeners("drop");
     this.sprite.destroy();
   }
 }

@@ -11,7 +11,7 @@ class Demand {
 export default class Vizbig {
   constructor(scene, x, y) {
     this.scene = scene;
-    this.seconds = 100;
+    this.seconds = 1000;
     this.sprite = scene.physics.add.sprite(x, y, "atlas", "mutant-plant");
     this.demandQueue = [
       new Demand(DEMAND.WATER, 20 * this.seconds),
