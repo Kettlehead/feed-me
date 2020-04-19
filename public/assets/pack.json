@@ -21,6 +21,11 @@
         "type": "image",
         "key": "Tiles",
         "url": "assets/tileset-extruded.png"
+      },
+      {
+        "type": "audio",
+        "key": "backgroundMusic",
+        "url": "assets/BackgroundMusic.mp3"
       }
     ]
   }

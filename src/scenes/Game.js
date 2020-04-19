@@ -14,6 +14,10 @@ export default class Game extends Phaser.Scene {
 
   create() {
     this.cameras.main.setBackgroundColor(0x263d0a);
+    this.music = this.sound.add("backgroundMusic");
+    this.music.setVolume(0.5);
+    this.music.setLoop(true);
+    this.music.play();
     this.map = this.make.tilemap({ key: "world" });
     this.physics.world.bounds.width = this.map.widthInPixels;
     this.physics.world.bounds.height = this.map.heightInPixels;
@@ -240,6 +244,7 @@ export default class Game extends Phaser.Scene {
   }
 
   cleanUp() {
+    this.music.stop();
     this.events.removeAllListeners("pickup");
     this.events.removeAllListeners("spawn_fruit");
     this.events.removeAllListeners("carry_action");
