@@ -1,6 +1,6 @@
 {
   "name": "feed-me",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Game for Ludum Dare 46",
   "scripts": {
     "start": "parcel src/index.html -p 8000",
